@@ -42,3 +42,12 @@ body {
   background-color: turquoise;
   color: black;
 }
+
+.checked {
+  background-color: red;
+  cursor: not-allowed;
+}
+
+.checked:hover {
+  background-color: tomato;
+}
