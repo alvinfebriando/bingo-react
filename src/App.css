@@ -1,0 +1,44 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #dcdada;
+}
+
+#title {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.container {
+  display: flex;
+  margin: 20px 0;
+  justify-content: space-around;
+}
+
+.bingo {
+  display: flex;
+  flex-wrap: wrap;
+  width: 400px;
+  user-select: none;
+}
+
+.number {
+  display: flex;
+  width: 80px;
+  height: 80px;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid limegreen;
+  background-color: teal;
+  color: white;
+  cursor: pointer;
+}
+
+.number:hover {
+  background-color: turquoise;
+  color: black;
+}

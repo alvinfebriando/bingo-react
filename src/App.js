@@ -17,9 +17,11 @@ const App = () => {
   const [num2, setNum2] = useState(Util.shuffle(numArr));
   return (
     <div id="main">
-      <h1>Hello World</h1>
-      <Bingo number={num1}></Bingo>
-      <Bingo number={num2}></Bingo>
+      <h1 id="title">Bingo</h1>
+      <div className="container">
+        <Bingo number={num1}></Bingo>
+        <Bingo number={num2}></Bingo>
+      </div>
     </div>
   );
 };

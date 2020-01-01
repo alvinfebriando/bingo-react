@@ -5,7 +5,9 @@ const Bingo = props => {
   let { number, checked } = props;
   return (
     <div className="bingo">
-      <BingoNumber number={number} checked={checked}></BingoNumber>
+      {number.map(val => {
+        return <BingoNumber number={val} checked={checked}></BingoNumber>;
+      })}
     </div>
   );
 };
