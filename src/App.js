@@ -23,9 +23,11 @@ const App = () => {
     let index1, index2, arr;
     num1.map((val, idx) => {
       index1 = parseFloat(num) === parseFloat(val) ? idx : index1;
+      return val;
     });
     num2.map((val, idx) => {
       index2 = parseFloat(num) === parseFloat(val) ? idx : index2;
+      return val;
     });
     arr = [...checked1];
     arr[index1] = true;
@@ -35,9 +37,19 @@ const App = () => {
     setChecked2(arr);
   };
 
+  const resetNumber = () => {
+    setNum1(Util.shuffle(numArr));
+    setNum2(Util.shuffle(numArr));
+    setChecked1([...checkedArr]);
+    setChecked2([...checkedArr]);
+  };
+
   return (
     <div id="main">
       <h1 id="title">Bingo</h1>
+      <div class="reset">
+        <button onClick={resetNumber}>Reset</button>
+      </div>
       <div className="container">
         <Bingo number={num1} checked={checked1} check={check}></Bingo>
         <Bingo number={num2} checked={checked2} check={check}></Bingo>
