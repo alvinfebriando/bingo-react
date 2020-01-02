@@ -11,10 +11,10 @@ for (let i = 1; i <= 25; i++) {
   numArr.push(i);
   checkedArr.push(false);
 }
-const num1 = Util.shuffle(numArr);
-const num2 = Util.shuffle(numArr);
 
 const App = () => {
+  const [num1, setNum1] = useState(Util.shuffle(numArr));
+  const [num2, setNum2] = useState(Util.shuffle(numArr));
   const [checked1, setChecked1] = useState([...checkedArr]);
   const [checked2, setChecked2] = useState([...checkedArr]);
 
@@ -23,11 +23,9 @@ const App = () => {
     let index1, index2, arr;
     num1.map((val, idx) => {
       index1 = parseFloat(num) === parseFloat(val) ? idx : index1;
-      return val;
     });
     num2.map((val, idx) => {
       index2 = parseFloat(num) === parseFloat(val) ? idx : index2;
-      return val;
     });
     arr = [...checked1];
     arr[index1] = true;
