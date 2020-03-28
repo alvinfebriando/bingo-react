@@ -1,0 +1,6 @@
+.bingo {
+  display: flex;
+  flex-wrap: wrap;
+  width: 400px;
+  user-select: none;
+}

@@ -1,21 +1,25 @@
-import React from 'react';
+import React, { Component } from 'react';
 import BingoNumber from './BingoNumber';
 
-const Bingo = props => {
-  let { number, checked, check } = props;
-  return (
-    <div className="bingo">
-      {number.map((val, idx) => {
-        return (
-          <BingoNumber
-            number={val}
-            checked={checked[idx]}
-            check={check}
-          ></BingoNumber>
-        );
-      })}
-    </div>
-  );
-};
+import './Bingo.css';
 
-export default Bingo;
+export default class Bingo extends Component {
+  render() {
+    const { number, checked, check } = this.props;
+    return (
+      <div>
+        <div className="bingo">
+          {number.map((val, idx) => {
+            return (
+              <BingoNumber
+                number={val}
+                checked={checked[idx]}
+                check={check}
+              ></BingoNumber>
+            );
+          })}
+        </div>
+      </div>
+    );
+  }
+}
