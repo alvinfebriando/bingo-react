@@ -12,6 +12,7 @@ export default class Bingo extends Component {
           {number.map((val, idx) => {
             return (
               <BingoNumber
+                key={val}
                 number={val}
                 checked={checked[idx]}
                 check={check}
