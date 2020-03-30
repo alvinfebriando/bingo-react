@@ -90,6 +90,9 @@ export default class Game extends Component {
           <button onClick={this.resetNumber}>Reset Number</button>
           <button onClick={this.resetChecked}>Clear Selection</button>
         </div>
+        <div className="turn-info">
+          Player {this.state.isPlaying1 ? '1' : '2'} turn
+        </div>
         <div className="container">
           <Bingo
             isPlaying={this.state.isPlaying1}

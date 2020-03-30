@@ -39,3 +39,7 @@ body {
   margin: 20px 0;
   justify-content: space-around;
 }
+
+.turn-info {
+  text-align: center;
+}
