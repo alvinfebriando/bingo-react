@@ -1,5 +1,5 @@
 {
-  "name": "bingo-react",
+  "name": "bingo",
   "version": "0.2.0",
   "private": true,
   "dependencies": {
@@ -36,5 +36,5 @@
   "devDependencies": {
     "gh-pages": "^2.2.0"
   },
-  "homepage": "https://alvinfebriando.github.io/bingo-react/"
+  "homepage": "https://alvinfebriando.github.io/bingo/"
 }
