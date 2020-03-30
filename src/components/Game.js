@@ -21,8 +21,8 @@ export default class Game extends Component {
       checked2: [...checkedArr],
       isPlaying1: true,
       isPlaying2: false,
-      count1: 0,
-      count2: 0
+      score1: 0,
+      score2: 0
     };
 
     this.check = this.check.bind(this);
@@ -72,8 +72,8 @@ export default class Game extends Component {
       checked2: [...checkedArr],
       isPlaying1: true,
       isPlaying2: false,
-      count1: 0,
-      count2: 0
+      score1: 0,
+      score2: 0
     });
   }
 
@@ -88,8 +88,8 @@ export default class Game extends Component {
       checked2: [...checkedArr],
       isPlaying1: true,
       isPlaying2: false,
-      count1: 0,
-      count2: 0
+      score1: 0,
+      score2: 0
     });
   }
 
@@ -154,7 +154,12 @@ export default class Game extends Component {
     if (diagonalTRDL2.every(n => n === true)) {
       count2++;
     }
-    this.setState({ count1, count2 });
+    this.setState(() => {
+      return {
+        score1: count1,
+        score2: count2
+      };
+    });
   }
 
   render() {
