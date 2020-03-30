@@ -10,15 +10,19 @@ class BingoNumber extends Component {
   }
 
   handleClick(e) {
-    this.props.check(e.target.getAttribute('number'));
+    if (this.props.isPlaying === true) {
+      this.props.check(e.target.getAttribute('number'));
+    }
   }
   render() {
-    const { number, checked } = this.props;
+    const { number, checked, isPlaying } = this.props;
     return (
       <div
         number={number}
         checked={checked}
-        className={`number ${checked ? 'checked' : ''}`}
+        className={`number ${checked ? 'checked' : ''} ${
+          isPlaying ? '' : 'not-playing'
+        }`}
         onClick={this.handleClick}
       >
         {number}

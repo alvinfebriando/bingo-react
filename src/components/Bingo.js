@@ -5,21 +5,20 @@ import './Bingo.css';
 
 export default class Bingo extends Component {
   render() {
-    const { number, checked, check } = this.props;
+    const { number, checked, check, isPlaying } = this.props;
     return (
-      <div>
-        <div className="bingo">
-          {number.map((val, idx) => {
-            return (
-              <BingoNumber
-                key={val}
-                number={val}
-                checked={checked[idx]}
-                check={check}
-              ></BingoNumber>
-            );
-          })}
-        </div>
+      <div className="bingo">
+        {number.map((val, idx) => {
+          return (
+            <BingoNumber
+              isPlaying={isPlaying}
+              key={val}
+              number={val}
+              checked={checked[idx]}
+              check={check}
+            ></BingoNumber>
+          );
+        })}
       </div>
     );
   }
