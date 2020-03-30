@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Bingo from './Bingo';
 import util from '../util/util';
+import Info from './Info';
 
 export default class Game extends Component {
   constructor(props) {
@@ -164,7 +165,7 @@ export default class Game extends Component {
 
   render() {
     return (
-      <div id="main">
+      <>
         <h1 id="title">Bingo</h1>
         <div className="reset">
           <button onClick={this.resetNumber}>Reset Number</button>
@@ -174,7 +175,7 @@ export default class Game extends Component {
           Player {this.state.isPlaying1 ? '1' : '2'} turn
         </div>
         <div className="container">
-          {this.state.count1}
+          <Info name="Player 1" score={this.state.score1}></Info>
           <Bingo
             isPlaying={this.state.isPlaying1}
             number={this.state.num1}
@@ -187,9 +188,9 @@ export default class Game extends Component {
             checked={this.state.checked2}
             check={this.check}
           ></Bingo>
-          {this.state.count2}
+          <Info name="Player 2" score={this.state.score2}></Info>
         </div>
-      </div>
+      </>
     );
   }
 }

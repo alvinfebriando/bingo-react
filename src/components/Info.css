@@ -1,0 +1,11 @@
+.Info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Info-player-data {
+  margin: 10px auto;
+  font-size: 1.75rem;
+  color: #14121c;
+}
