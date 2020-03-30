@@ -155,12 +155,26 @@ export default class Game extends Component {
     if (diagonalTRDL2.every(n => n === true)) {
       count2++;
     }
-    this.setState(() => {
-      return {
-        score1: count1,
-        score2: count2
-      };
-    });
+    this.setState(
+      () => {
+        return {
+          score1: count1,
+          score2: count2
+        };
+      },
+      () => {
+        if (this.state.score1 >= 5 && this.state.score1 === this.state.score2) {
+          alert('Draw');
+          this.resetNumber();
+        } else if (this.state.score1 >= 5) {
+          alert('Player 1 win');
+          this.resetNumber();
+        } else if (this.state.score2 >= 5) {
+          alert('Player 2 win');
+          this.resetNumber();
+        }
+      }
+    );
   }
 
   render() {
