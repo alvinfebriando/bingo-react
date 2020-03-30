@@ -26,4 +26,5 @@
 
 .not-playing {
   cursor: not-allowed;
+  visibility: hidden;
 }
