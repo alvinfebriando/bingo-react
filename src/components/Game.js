@@ -20,12 +20,15 @@ export default class Game extends Component {
       checked1: [...checkedArr],
       checked2: [...checkedArr],
       isPlaying1: true,
-      isPlaying2: false
+      isPlaying2: false,
+      count1: 0,
+      count2: 0
     };
 
     this.check = this.check.bind(this);
     this.resetNumber = this.resetNumber.bind(this);
     this.resetChecked = this.resetChecked.bind(this);
+    this.checkWinner = this.checkWinner.bind(this);
   }
 
   check(num) {
@@ -36,22 +39,22 @@ export default class Game extends Component {
       val => parseInt(num) === parseInt(val)
     );
 
-    this.setState(() => {
+    this.setState(prev => {
       return {
         checked1: [
-          ...this.state.checked1.slice(0, index1),
+          ...prev.checked1.slice(0, index1),
           true,
-          ...this.state.checked1.slice(index1 + 1)
+          ...prev.checked1.slice(index1 + 1)
         ],
         checked2: [
-          ...this.state.checked2.slice(0, index2),
+          ...prev.checked2.slice(0, index2),
           true,
-          ...this.state.checked2.slice(index2 + 1)
+          ...prev.checked2.slice(index2 + 1)
         ],
-        isPlaying1: !this.state.isPlaying1,
-        isPlaying2: !this.state.isPlaying2
+        isPlaying1: !prev.isPlaying1,
+        isPlaying2: !prev.isPlaying2
       };
-    });
+    }, this.checkWinner);
   }
 
   resetNumber() {
@@ -66,7 +69,11 @@ export default class Game extends Component {
       num1: util.shuffle(numArr),
       num2: util.shuffle(numArr),
       checked1: [...checkedArr],
-      checked2: [...checkedArr]
+      checked2: [...checkedArr],
+      isPlaying1: true,
+      isPlaying2: false,
+      count1: 0,
+      count2: 0
     });
   }
 
@@ -78,8 +85,76 @@ export default class Game extends Component {
     }
     this.setState({
       checked1: [...checkedArr],
-      checked2: [...checkedArr]
+      checked2: [...checkedArr],
+      isPlaying1: true,
+      isPlaying2: false,
+      count1: 0,
+      count2: 0
     });
+  }
+
+  checkWinner() {
+    const { checked1, checked2 } = this.state;
+    let count1 = 0;
+    let count2 = 0;
+
+    let diagonalTLDR1 = [];
+    let diagonalTLDR2 = [];
+    let diagonalTRDL1 = [];
+    let diagonalTRDL2 = [];
+
+    // Check horizontal
+    for (let i = 0; i < 25; i += 5) {
+      const horizontalRow1 = checked1.slice(i, i + 5);
+      if (horizontalRow1.every(n => n === true)) {
+        count1++;
+      }
+      const horizontalRow2 = checked2.slice(i, i + 5);
+      if (horizontalRow2.every(n => n === true)) {
+        count2++;
+      }
+    }
+
+    // Check vertikal
+    for (let i = 0; i < 5; i++) {
+      let verticalColumn1 = [];
+      let verticalColumn2 = [];
+      for (let j = i; j < 25; j += 5) {
+        verticalColumn1.push(checked1[j]);
+        verticalColumn2.push(checked2[j]);
+      }
+      if (verticalColumn1.every(n => n === true)) {
+        count1++;
+      }
+      if (verticalColumn2.every(n => n === true)) {
+        count2++;
+      }
+    }
+
+    // Check top-left down-right diagonal
+    for (let i = 0; i < 25; i += 6) {
+      diagonalTLDR1.push(checked1[i]);
+      diagonalTLDR2.push(checked2[i]);
+    }
+    if (diagonalTLDR1.every(n => n === true)) {
+      count1++;
+    }
+    if (diagonalTLDR2.every(n => n === true)) {
+      count2++;
+    }
+
+    // Check top-right down-left diagonal
+    for (let i = 4; i <= 20; i += 4) {
+      diagonalTRDL1.push(checked1[i]);
+      diagonalTRDL2.push(checked2[i]);
+    }
+    if (diagonalTRDL1.every(n => n === true)) {
+      count1++;
+    }
+    if (diagonalTRDL2.every(n => n === true)) {
+      count2++;
+    }
+    this.setState({ count1, count2 });
   }
 
   render() {
@@ -94,6 +169,7 @@ export default class Game extends Component {
           Player {this.state.isPlaying1 ? '1' : '2'} turn
         </div>
         <div className="container">
+          {this.state.count1}
           <Bingo
             isPlaying={this.state.isPlaying1}
             number={this.state.num1}
@@ -106,6 +182,7 @@ export default class Game extends Component {
             checked={this.state.checked2}
             check={this.check}
           ></Bingo>
+          {this.state.count2}
         </div>
       </div>
     );
