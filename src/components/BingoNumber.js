@@ -10,7 +10,7 @@ class BingoNumber extends Component {
   }
 
   handleClick(e) {
-    if (this.props.isPlaying === true) {
+    if (this.props.isPlaying === true && this.props.checked === false) {
       this.props.check(e.target.getAttribute('number'));
     }
   }
