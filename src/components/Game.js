@@ -18,7 +18,9 @@ export default class Game extends Component {
       num1: util.shuffle(numArr),
       num2: util.shuffle(numArr),
       checked1: [...checkedArr],
-      checked2: [...checkedArr]
+      checked2: [...checkedArr],
+      isPlaying1: true,
+      isPlaying2: false
     };
 
     this.check = this.check.bind(this);
@@ -45,7 +47,9 @@ export default class Game extends Component {
           ...this.state.checked2.slice(0, index2),
           true,
           ...this.state.checked2.slice(index2 + 1)
-        ]
+        ],
+        isPlaying1: !this.state.isPlaying1,
+        isPlaying2: !this.state.isPlaying2
       };
     });
   }
@@ -86,13 +90,18 @@ export default class Game extends Component {
           <button onClick={this.resetNumber}>Reset Number</button>
           <button onClick={this.resetChecked}>Clear Selection</button>
         </div>
+        <div className="turn-info">
+          Player {this.state.isPlaying1 ? '1' : '2'} turn
+        </div>
         <div className="container">
           <Bingo
+            isPlaying={this.state.isPlaying1}
             number={this.state.num1}
             checked={this.state.checked1}
             check={this.check}
           ></Bingo>
           <Bingo
+            isPlaying={this.state.isPlaying2}
             number={this.state.num2}
             checked={this.state.checked2}
             check={this.check}

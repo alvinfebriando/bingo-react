@@ -23,3 +23,8 @@
 .checked:hover {
   background-color: tomato;
 }
+
+.not-playing {
+  cursor: not-allowed;
+  visibility: hidden;
+}
