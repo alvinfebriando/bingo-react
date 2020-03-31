@@ -5,7 +5,7 @@ import Game from './components/Game';
 
 const App = () => {
   return (
-    <div id="main">
+    <div id="App">
       <Game></Game>
     </div>
   );

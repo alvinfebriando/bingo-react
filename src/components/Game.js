@@ -3,6 +3,8 @@ import Bingo from './Bingo';
 import util from '../util/util';
 import Info from './Info';
 
+import './Game.css';
+
 export default class Game extends Component {
   constructor(props) {
     super(props);
@@ -179,7 +181,7 @@ export default class Game extends Component {
 
   render() {
     return (
-      <>
+      <div className="Game">
         <h1 id="title">Bingo</h1>
         <div className="reset">
           <button onClick={this.resetNumber}>Reset Number</button>
@@ -204,7 +206,7 @@ export default class Game extends Component {
           ></Bingo>
           <Info name="Player 2" score={this.state.score2}></Info>
         </div>
-      </>
+      </div>
     );
   }
 }

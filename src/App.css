@@ -7,39 +7,3 @@
 body {
   background-color: #dcdada;
 }
-
-#title {
-  text-align: center;
-  margin-top: 10px;
-}
-
-.reset {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-}
-
-.reset button {
-  font-size: 1.25rem;
-  padding: 10px 20px;
-  border-radius: 10px;
-  background-color: turquoise;
-  color: #313131;
-  cursor: pointer;
-}
-
-.reset button:hover {
-  background: #04b3b3;
-  color: white;
-}
-
-.container {
-  display: flex;
-  margin: 20px 0;
-  justify-content: space-evenly;
-}
-
-.turn-info {
-  text-align: center;
-}
