@@ -8,31 +8,31 @@ export default class Game extends Component {
     super(props);
 
     const numArr = [];
-    const checkedArr = [];
+    const selectedArr = [];
 
     for (let i = 1; i <= 25; i++) {
       numArr.push(i);
-      checkedArr.push(false);
+      selectedArr.push(false);
     }
 
     this.state = {
       num1: util.shuffle(numArr),
       num2: util.shuffle(numArr),
-      checked1: [...checkedArr],
-      checked2: [...checkedArr],
+      selected1: [...selectedArr],
+      selected2: [...selectedArr],
       isPlaying1: true,
       isPlaying2: false,
       score1: 0,
       score2: 0
     };
 
-    this.check = this.check.bind(this);
+    this.select = this.select.bind(this);
     this.resetNumber = this.resetNumber.bind(this);
     this.resetChecked = this.resetChecked.bind(this);
     this.checkWinner = this.checkWinner.bind(this);
   }
 
-  check(num) {
+  select(num) {
     const index1 = this.state.num1.findIndex(
       val => parseInt(num) === parseInt(val)
     );
@@ -42,15 +42,15 @@ export default class Game extends Component {
 
     this.setState(prev => {
       return {
-        checked1: [
-          ...prev.checked1.slice(0, index1),
+        selected1: [
+          ...prev.selected1.slice(0, index1),
           true,
-          ...prev.checked1.slice(index1 + 1)
+          ...prev.selected1.slice(index1 + 1)
         ],
-        checked2: [
-          ...prev.checked2.slice(0, index2),
+        selected2: [
+          ...prev.selected2.slice(0, index2),
           true,
-          ...prev.checked2.slice(index2 + 1)
+          ...prev.selected2.slice(index2 + 1)
         ],
         isPlaying1: !prev.isPlaying1,
         isPlaying2: !prev.isPlaying2
@@ -60,17 +60,17 @@ export default class Game extends Component {
 
   resetNumber() {
     const numArr = [];
-    const checkedArr = [];
+    const selectedArr = [];
 
     for (let i = 1; i <= 25; i++) {
       numArr.push(i);
-      checkedArr.push(false);
+      selectedArr.push(false);
     }
     this.setState({
       num1: util.shuffle(numArr),
       num2: util.shuffle(numArr),
-      checked1: [...checkedArr],
-      checked2: [...checkedArr],
+      selected1: [...selectedArr],
+      selected2: [...selectedArr],
       isPlaying1: true,
       isPlaying2: false,
       score1: 0,
@@ -79,14 +79,14 @@ export default class Game extends Component {
   }
 
   resetChecked() {
-    const checkedArr = [];
+    const selectedArr = [];
 
     for (let i = 1; i <= 25; i++) {
-      checkedArr.push(false);
+      selectedArr.push(false);
     }
     this.setState({
-      checked1: [...checkedArr],
-      checked2: [...checkedArr],
+      selected1: [...selectedArr],
+      selected2: [...selectedArr],
       isPlaying1: true,
       isPlaying2: false,
       score1: 0,
@@ -95,7 +95,7 @@ export default class Game extends Component {
   }
 
   checkWinner() {
-    const { checked1, checked2 } = this.state;
+    const { selected1, selected2 } = this.state;
     let count1 = 0;
     let count2 = 0;
 
@@ -106,11 +106,11 @@ export default class Game extends Component {
 
     // Check horizontal
     for (let i = 0; i < 25; i += 5) {
-      const horizontalRow1 = checked1.slice(i, i + 5);
+      const horizontalRow1 = selected1.slice(i, i + 5);
       if (horizontalRow1.every(n => n === true)) {
         count1++;
       }
-      const horizontalRow2 = checked2.slice(i, i + 5);
+      const horizontalRow2 = selected2.slice(i, i + 5);
       if (horizontalRow2.every(n => n === true)) {
         count2++;
       }
@@ -121,8 +121,8 @@ export default class Game extends Component {
       let verticalColumn1 = [];
       let verticalColumn2 = [];
       for (let j = i; j < 25; j += 5) {
-        verticalColumn1.push(checked1[j]);
-        verticalColumn2.push(checked2[j]);
+        verticalColumn1.push(selected1[j]);
+        verticalColumn2.push(selected2[j]);
       }
       if (verticalColumn1.every(n => n === true)) {
         count1++;
@@ -134,8 +134,8 @@ export default class Game extends Component {
 
     // Check top-left down-right diagonal
     for (let i = 0; i < 25; i += 6) {
-      diagonalTLDR1.push(checked1[i]);
-      diagonalTLDR2.push(checked2[i]);
+      diagonalTLDR1.push(selected1[i]);
+      diagonalTLDR2.push(selected2[i]);
     }
     if (diagonalTLDR1.every(n => n === true)) {
       count1++;
@@ -146,8 +146,8 @@ export default class Game extends Component {
 
     // Check top-right down-left diagonal
     for (let i = 4; i <= 20; i += 4) {
-      diagonalTRDL1.push(checked1[i]);
-      diagonalTRDL2.push(checked2[i]);
+      diagonalTRDL1.push(selected1[i]);
+      diagonalTRDL2.push(selected2[i]);
     }
     if (diagonalTRDL1.every(n => n === true)) {
       count1++;
@@ -193,14 +193,14 @@ export default class Game extends Component {
           <Bingo
             isPlaying={this.state.isPlaying1}
             number={this.state.num1}
-            checked={this.state.checked1}
-            check={this.check}
+            selected={this.state.selected1}
+            select={this.select}
           ></Bingo>
           <Bingo
             isPlaying={this.state.isPlaying2}
             number={this.state.num2}
-            checked={this.state.checked2}
-            check={this.check}
+            selected={this.state.selected2}
+            select={this.select}
           ></Bingo>
           <Info name="Player 2" score={this.state.score2}></Info>
         </div>

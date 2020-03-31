@@ -15,12 +15,12 @@
   color: black;
 }
 
-.checked {
+.selected {
   background-color: red;
   cursor: not-allowed;
 }
 
-.checked:hover {
+.selected:hover {
   background-color: tomato;
 }
 

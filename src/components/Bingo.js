@@ -5,7 +5,7 @@ import './Bingo.css';
 
 export default class Bingo extends Component {
   render() {
-    const { number, checked, check, isPlaying } = this.props;
+    const { number, selected, select, isPlaying } = this.props;
     return (
       <div className="bingo">
         {number.map((val, idx) => {
@@ -14,8 +14,8 @@ export default class Bingo extends Component {
               isPlaying={isPlaying}
               key={val}
               number={val}
-              checked={checked[idx]}
-              check={check}
+              selected={selected[idx]}
+              select={select}
             ></BingoNumber>
           );
         })}

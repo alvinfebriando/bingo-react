@@ -10,17 +10,17 @@ class BingoNumber extends Component {
   }
 
   handleClick(e) {
-    if (this.props.isPlaying === true && this.props.checked === false) {
-      this.props.check(e.target.getAttribute('number'));
+    if (this.props.isPlaying === true && this.props.selected === false) {
+      this.props.select(e.target.getAttribute('number'));
     }
   }
   render() {
-    const { number, checked, isPlaying } = this.props;
+    const { number, selected, isPlaying } = this.props;
     return (
       <div
         number={number}
-        checked={checked}
-        className={`number ${checked ? 'checked' : ''} ${
+        selected={selected}
+        className={`number ${selected ? 'selected' : ''} ${
           isPlaying ? '' : 'not-playing'
         }`}
         onClick={this.handleClick}
